@@ -11,9 +11,9 @@ from dotenv import load_dotenv
 load_dotenv()
 
 # Google credentials (stored as JSON string in Streamlit secrets)
-creds_json = st.secrets["api"]["USER_ID"]
+creds_json = st.secrets["api"]["JSON_ID"]
 if not creds_json:
-    raise ValueError("❌ Missing Google API credentials in st.secrets['api']['USER_ID'].")
+    raise ValueError("❌ Missing Google API credentials in st.secrets['api']['JSON_ID'].")
 
 creds_dict = json.loads(creds_json)
 scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
@@ -21,7 +21,8 @@ creds = ServiceAccountCredentials.from_json_keyfile_dict(creds_dict, scope)
 client = gspread.authorize(creds)
 
 # Allowed users (comma-separated usernames in Streamlit secrets)
-allowed_users_raw = st.secrets["api"]["JSON_ID"]
+allowed_users_raw = st.secrets["api"]["USER_ID"]
+print(allowed_users_raw)
 allowed_users = [u.strip() for u in allowed_users_raw.split(",") if u.strip()]
 
 # =========================================
