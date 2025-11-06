@@ -73,6 +73,20 @@ if st.session_state.logged_in:
         removal_date = st.date_input("Removal Date", min_value=date(2000, 1, 1), max_value=date.today())
         removal_engineer = st.selectbox("Select Site Engineer (Removal)", options=["Name 1", "Name 2"])
 
+        # =========================================
+        # 🚧 4. Barricades Section
+        # =========================================
+        st.subheader("🚧 Barricades")
+
+        col1, col2 = st.columns(2)
+        with col1:
+            barricade_full_set = st.number_input("Full Set", min_value=0, step=1)
+            barricade_single_panel = st.number_input("Single Panel", min_value=0, step=1)
+            barricade_single_angle = st.number_input("Single Angle", min_value=0, step=1)
+        with col2:
+            barricade_door_set = st.number_input("Door Set", min_value=0, step=1)
+            barricade_angle_set = st.number_input("Angle Set", min_value=0, step=1)
+
         submitted = st.form_submit_button("Submit")
 
         if submitted:
@@ -88,10 +102,16 @@ if st.session_state.logged_in:
                 delivery_date.strftime("%Y-%m-%d"),
                 installation_date.strftime("%Y-%m-%d"),
                 removal_date.strftime("%Y-%m-%d"),
-                removal_engineer
+                removal_engineer,
+                barricade_full_set,
+                barricade_door_set,
+                barricade_single_panel,
+                barricade_angle_set,
+                barricade_single_angle
             ])
 
             st.success("✅ Form Submitted Successfully! (Saved to Google Sheet)")
+
             st.subheader("📄 Summary")
             st.write(f"**Submitted By:** {st.session_state.username}")
             st.write(f"**Site Name:** {site_name}")
@@ -104,6 +124,12 @@ if st.session_state.logged_in:
             st.write(f"**Installation Date:** {installation_date.strftime('%B %d, %Y')}")
             st.write(f"**Removal Date:** {removal_date.strftime('%B %d, %Y')}")
             st.write(f"**Site Engineer (Removal):** {removal_engineer}")
+            st.markdown("### 🚧 Barricades Summary")
+            st.write(f"**Full Set:** {barricade_full_set}")
+            st.write(f"**Door Set:** {barricade_door_set}")
+            st.write(f"**Single Panel:** {barricade_single_panel}")
+            st.write(f"**Angle Set:** {barricade_angle_set}")
+            st.write(f"**Single Angle:** {barricade_single_angle}")
 
 else:
     st.info("👆 Please log in with a valid ID to access the form.")
