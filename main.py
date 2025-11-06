@@ -11,9 +11,9 @@ from dotenv import load_dotenv
 load_dotenv()
 
 # Google credentials (stored as JSON string in Streamlit secrets)
-creds_json = st.secrets["api"]["JSON_ID"]
+creds_json = st.secrets["api"]["TEST_1"]
 if not creds_json:
-    raise ValueError("❌ Missing Google API credentials in st.secrets['api']['JSON_ID'].")
+    raise ValueError("❌ Missing Google API credentials in st.secrets['api']['TEST_1'].")
 
 creds_dict = json.loads(creds_json)
 scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
@@ -21,8 +21,7 @@ creds = ServiceAccountCredentials.from_json_keyfile_dict(creds_dict, scope)
 client = gspread.authorize(creds)
 
 # Allowed users (comma-separated usernames in Streamlit secrets)
-allowed_users_raw = st.secrets["api"]["USER_ID"]
-print(allowed_users_raw)
+allowed_users_raw = st.secrets["api"]["TEST_2"]
 allowed_users = [u.strip() for u in allowed_users_raw.split(",") if u.strip()]
 
 # =========================================
@@ -51,7 +50,7 @@ if login_button:
 # =========================================
 if st.session_state.logged_in:
 
-    spreadsheet_id = "1Zyvs8Z8tOpUenyCsRZ_msyHrChzHfUS9bIl7qY9F18w"
+    spreadsheet_id = "16vsvXVNFILSD4TfwU3QpjeM3hXZ64PLrPkEk1PrCZHY"
     sheet = client.open_by_key(spreadsheet_id).sheet1
 
     st.header("📋 Site Job Entry Form")
