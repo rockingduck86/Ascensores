@@ -64,14 +64,38 @@ if st.session_state.logged_in:
         location = st.text_input("Location")
 
         st.subheader("👷 Personnel")
-        employee_name = st.selectbox("Select Employee Name", options=["Name 1", "Name 2"])
-        site_engineer = st.selectbox("Select Site Engineer (Installation)", options=["Name 1", "Name 2"])
+        employee_name = st.selectbox(
+            "Select Employee Name",
+            options=[
+                "Suraj Rane",
+                "Mahendra Bandekar",
+                "Karthik Naidu",
+                "Swapnil Shelke",
+            ],
+        )
+        site_engineer = st.selectbox(
+            "Select Site Engineer (Installation)",
+            options=[
+                "Suraj Rane",
+                "Mahendra Bandekar",
+                "Karthik Naidu",
+                "Swapnil Shelke",
+            ],
+        )
 
         st.subheader("📅 Dates")
         delivery_date = st.date_input("Delivery Date", min_value=date(2000, 1, 1), max_value=date.today())
         installation_date = st.date_input("Installation Date", min_value=date(2000, 1, 1), max_value=date.today())
         removal_date = st.date_input("Removal Date", min_value=date(2000, 1, 1), max_value=date.today())
-        removal_engineer = st.selectbox("Select Site Engineer (Removal)", options=["Name 1", "Name 2"])
+        removal_engineer = st.selectbox(
+            "Select Site Engineer (Removal)",
+            options=[
+                "Suraj Rane",
+                "Mahendra Bandekar",
+                "Karthik Naidu",
+                "Swapnil Shelke",
+            ],
+        )
 
         # =========================================
         # 🚧 4. Barricades Section
